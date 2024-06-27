@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {useNavigate} from "react-router-dom";
 
-const Login = () => {
+const Login = ( {cambiarLogin} ) => {
 
   const navigate = useNavigate();
 
@@ -52,6 +52,7 @@ const Login = () => {
 
       // Validar el usuario registrado
       if (email ===  user.email && password === user.password) {
+        cambiarLogin();
         navigate('/');
       } else {
         alert("Datos ingresados incorrectos");
