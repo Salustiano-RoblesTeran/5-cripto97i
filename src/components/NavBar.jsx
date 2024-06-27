@@ -39,7 +39,7 @@ const NavBar = () => {
                 </NavLink>
                 </li>
                 <li className="nav-item">
-                    <button className='btn btn-outline-dark'>Login</button>
+                    <button className='btn btn-outline-dark'>LogOut</button>
                 </li>
             </ul>
             </div>

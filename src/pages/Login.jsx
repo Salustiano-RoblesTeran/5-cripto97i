@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
+
+  const navigate = useNavigate();
 
     //! Estados para cada uno de los campos
     // const [email, setEmail] = useState("");
@@ -17,11 +20,43 @@ const Login = () => {
         password: ""
     });
 
+    const { email, password } = formValues;
+
+    const [showAlert, setShowAlert] = useState(false);
+
     const handleChange = (event) => {
+
+      setShowAlert(false)
+
         setFormValues({
-            ...formValues, [event.target.value]: event.target.value
+          // ... es el spreads operator
+            ...formValues, [event.target.name]: event.target.value
         });
-    };
+
+      };
+ 
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      // Usuario de prueba
+      const user = {
+        email: "lucas@lucas.com",
+        password: "123456"
+      }
+
+
+      if (!email || !password) {
+        setShowAlert(true);
+      }
+
+      // Validar el usuario registrado
+      if (email ===  user.email && password === user.password) {
+        navigate('/');
+      } else {
+        alert("Datos ingresados incorrectos");
+      }
+    }
 
   return (
     <>
@@ -36,7 +71,7 @@ const Login = () => {
       </div>
       <div className="row">
         <div className="col col-md-6 offset-md-3">
-          <form onSubmit="">
+          <form onSubmit={handleSubmit}>
             <div className="mb-3 d-grid">
               <label>Email</label>
               <input
@@ -62,6 +97,8 @@ const Login = () => {
 
               />
             </div>
+            {showAlert && (<p className='bg-danger text-light text-center m-3'>Faltan datos, completa los campos</p>)}
+            
             <div className="mb-3 d-grid">
               <button className="btn btn-success">Sign in</button>
             </div>
