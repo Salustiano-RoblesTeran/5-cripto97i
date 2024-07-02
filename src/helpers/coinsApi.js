@@ -9,3 +9,11 @@ export const getCoins = async () => {
 
     return data;
 }
+
+//----------------
+
+export const getcoinId = async (id) => {
+    const coins = await fetch(`${url}/${id}`);
+    const data = await coins.json();
+    return data;
+}
