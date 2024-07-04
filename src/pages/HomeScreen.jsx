@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react'
 
 import { getCoins } from '../helpers/coinsApi'
 import TableCoins from '../components/TableCoins'
+import SearchCoins from '../components/SearchCoins';
 
 const HomeScreen = () => {
 
   const [coins, setCoins] = useState(null);
 
-  useEffect(() => {
-    traerMonedas();
-  }, [])
+  // Estado para la barra de busqueda
+  const [inputSearch, setInputSearch] = useState("");
 
-  const traerMonedas = async () => {
-    const { data } = await getCoins();
+  useEffect(() => { // No puede recibir una funcion asincrona
+    traerMonedas(inputSearch);
+  }, [inputSearch])
+
+  const traerMonedas = async (termino) => {
+    const { data } = await getCoins(termino);
     
     setCoins(data);
   }
@@ -34,7 +38,9 @@ const HomeScreen = () => {
           </div>
         </div>
       </div>
-      <div className="row">{/*Barra de busqueda */}</div>
+      <div className="row">
+        <SearchCoins inputSearch={inputSearch} setInputSearch={setInputSearch}/>
+      </div>
       <div className="row mt-5"> {coins  ? (<div className='col text-center'><TableCoins coins = {coins}/></div>) : (<div className='col text-center'><h3>Loading</h3></div>)} </div>
     </div>
     </>

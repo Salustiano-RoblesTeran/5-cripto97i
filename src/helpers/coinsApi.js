@@ -2,8 +2,8 @@ const url = 'https://api.coincap.io/v2/assets';
 
 let limite = 10;
 
-export const getCoins = async () => {
-    const coins = await fetch(`${url}?limit=${limite}`); // Template strings
+export const getCoins = async (termino) => {
+    const coins = await fetch(`${url}?limit=${limite}&search=${termino}`); // Template strings
 
     const data = await coins.json();
 

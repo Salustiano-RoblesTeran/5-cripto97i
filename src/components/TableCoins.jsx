@@ -24,7 +24,7 @@ const TableCoins = ( {coins} ) => {
                     </td>
                     <td>{coin.name}</td>
                     <td>{numeral(coin.priceUsd).format("$0,0.00")}</td>
-                    <td className= {coin.changePercent24Hr > 0 ? 'text-danger' : 'text-success'}>{parseFloat(coin.changePercent24Hr).toFixed(2)}%</td>
+                    <td className= {coin.changePercent24Hr < 0 ? 'text-danger' : 'text-success'}>{parseFloat(coin.changePercent24Hr).toFixed(2)}%</td>
                 </tr>
         ))}
 
