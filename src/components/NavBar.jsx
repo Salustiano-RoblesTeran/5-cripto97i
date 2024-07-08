@@ -1,8 +1,8 @@
 import React from 'react'
 
 import {Link, NavLink} from 'react-router-dom'; //son lo mismo, NavLink permite dar estilos para la navegacion como active
-
-const NavBar = () => {
+ 
+const NavBar = ( {cambiarLogin} ) => {
   return (
     <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -39,7 +39,7 @@ const NavBar = () => {
                 </NavLink>
                 </li>
                 <li className="nav-item">
-                    <button className='btn btn-outline-dark'>LogOut</button>
+                    <button className='btn btn-outline-dark' onClick={cambiarLogin}>LogOut</button>
                 </li>
             </ul>
             </div>
